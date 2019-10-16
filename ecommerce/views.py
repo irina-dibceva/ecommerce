@@ -5,13 +5,15 @@ from django.shortcuts import render, redirect
 
 from .forms import ContactForm, LoginForm, RegisterForm
 
+User = get_user_model()
+
 
 def home_page(request):
     context = {
         'title': 'Hello Word!',
         'content': 'Welcome to the homepage.',
         'premium_content': '',
-        
+        'users': User.objects.filter(is_active=True)
         }
     if request.user.is_authenticated:
         context['premium_content'] = 'YEAHHHHH'
@@ -52,9 +54,6 @@ def login_page(request):
         else:
             print('Error')
     return render(request, 'login.html', context)
-
-
-User = get_user_model()
 
 
 def register_page(request):
