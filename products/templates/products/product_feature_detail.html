@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+<p>{{object_list}}</p>
+
+
+<p>{{object.title}} </p>
+<br/><hr/>
+<p>{{object.description}}</p>
+<br/><hr/>
+<p>{{object.price}}</p>
+<br/><hr/><hr/>
+{% if object.image %}
+<p>{{object.image.url}}</p>
+<img src='{{object.image.url}}' class= "img-fluid" align="left" />
+{% endif %}
+
+</body>
+</html>

@@ -18,7 +18,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from products.views import ProductListView, product_list, ProductDetailView, product_detail
+from products.views import (
+    ProductListView, product_list, ProductDetailView, product_detail,
+    ProductFeatureListView, ProductFeatureDetailView,
+    ProductDetailSlugView,
+                            )
 from .views import *
 
 
@@ -30,8 +34,11 @@ urlpatterns = [
     path('register/', register_page),
     path('product/', ProductListView.as_view()),
     path('product-fbv/', product_list),
-    path('product/<int:pk>/', ProductDetailView.as_view()),
+    #path('product/<int:pk>/', ProductDetailView.as_view()),
+    path('product/<str:slug>/', ProductDetailSlugView.as_view()),
     path('product-d/', product_detail),
+    path('feature/<int:pk>/', ProductFeatureDetailView.as_view()),
+    path('feature/', ProductFeatureListView.as_view()),
 ]
 
 if settings.DEBUG:
